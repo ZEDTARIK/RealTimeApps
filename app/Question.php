@@ -8,18 +8,21 @@ class Question extends Model
 {
     // RelationShip
 
-    public function user() 
+    public function user()
     {
-        return $this->belongTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function category() 
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function replies() 
+    public function replies()
     {
         return $this->hasMany(Reply::class);
     }
+
+    // Fialabelle 
+    protected $guarded  = [];
 }
