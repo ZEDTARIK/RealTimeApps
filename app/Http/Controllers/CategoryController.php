@@ -11,6 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 class CategoryController extends Controller
 {
     /**
+     * Create a  Middleware instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -42,7 +51,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->save();
-        return response( new CategoryResource($category), Response::HTTP_OK);
+        return response(new CategoryResource($category), Response::HTTP_OK);
     }
 
     /**
